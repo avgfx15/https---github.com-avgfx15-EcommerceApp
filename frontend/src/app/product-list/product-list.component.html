@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <h1 class="text-center">All Products List</h1>
+    <div class="alert alert-primary" role="alert" *ngIf="isDisabled">
+      <strong> {{ showMessage }} </strong>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-primary table-bordered table-responsive">
+        <thead class="text-center fs-5 table-warning">
+          <tr>
+            <th scope="col" class="p-2">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Qty</th>
+            <th scope="col">Category</th>
+            <th scope="col">Color</th>
+            <th scope="col">Price</th>
+            <th scope="col">Description</th>
+            <th scope="col">Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tableRow" *ngFor="let product of products">
+            <td scope="row" class="align-middle p-1 text-center">
+              <img src="{{ product.productImage }}" alt="" srcset="" />
+            </td>
+            <td scope="row" class="p-2">{{ product.productName }}</td>
+            <td scope="row" class="p-2 align-middle text-center fw-bolder">
+              {{ product.productQty }}
+            </td>
+            <td scope="row" class="p-2">{{ product.productCategory }}</td>
+            <td scope="row" class="p-2">{{ product.productColor }}</td>
+            <td scope="row" class="p-2">{{ product.productPrice }}</td>
+            <td scope="row" class="p-2">{{ product.productDescription }}</td>
+            <td scope="row" class="text-center align-middle">
+              <a
+                routerLink="/sellerupdateproduct/{{ product._id }}"
+                class="text-decoration-none text-black"
+              >
+                <i class="fa-solid fa-pen-to-square mx-2 fs-5"></i></a
+              ><i
+                class="fa-solid fa-trash me-2 fs-5"
+                (click)="deleteProduct(product._id)"
+              ></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

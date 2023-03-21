@@ -1,0 +1,161 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand fs-4 logo" routerLink="/">STACODEV</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Display Navbar by login Seller or User or Default By checking ngSwitch  -->
+
+    <div
+      class="collapse navbar-collapse"
+      id="navbarSupportedContent"
+      [ngSwitch]="menuType"
+    >
+      <div>
+        <form class="d-flex ms-5" role="search" *ngIf="menuType === 'default'">
+          <input
+            class="form-control me-2 searchText"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+            (keyup)="searchByQuery($event)"
+            (blur)="hideSearch()"
+            #searchInput
+          />
+          <button
+            class="btn btn-outline-success"
+            type="submit"
+            (click)="searchresult(searchInput.value)"
+          >
+            Search
+          </button>
+          <ul class="successResult" *ngIf="isDisabled">
+            <li *ngFor="let searchProduct of searchProducts">
+              <a
+                (mousedown)="redirectToProductDetail(searchProduct._id)"
+                class="pointerLink"
+                >{{ searchProduct.productName }}</a
+              >
+            </li>
+          </ul>
+        </form>
+      </div>
+      <!-- Default Navbar in then display this menu by changing ngSwitchCase  -->
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngSwitchCase="'default'">
+        <li class="nav-item">
+          <a class="nav-link active fs-5" aria-current="page" routerLink="/"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" routerLink="/seller">Seller</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" href="#"
+            >Cart<span class="badge text-bg-primary" *ngIf="isCartFull">
+              {{ cartQty }}
+            </span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" routerLink="/user">Login</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle fs-5"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Dashbord
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">My Order</a></li>
+            <li><a class="dropdown-item" href="#">Payment History</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#">Change Password</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <!-- Seller logged in then display this menu by changing ngSwitchCase  -->
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngSwitchCase="'seller'">
+        <li class="nav-item">
+          <a class="nav-link fs-5" routerLink="/sellerproductlist"
+            >Product List</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" routerLink="selleraddproduct"
+            >Add Products</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5 text-white" href="#"> {{ sellerName }} </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" href="#" (click)="logOut()">Logout</a>
+        </li>
+      </ul>
+
+      <!-- User logged in then display this menu by changing ngSwitchCase  -->
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0" *ngSwitchCase="'user'">
+        <li class="nav-item">
+          <a class="nav-link active fs-5" aria-current="page" routerLink="/"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" routerLink="/seller">Seller</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" href="#"
+            >Cart<span class="badge text-bg-primary" *ngIf="isCartFull">{{
+              cartQty
+            }}</span></a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" routerLink="/user">{{ userName }}</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle fs-5"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Dashbord
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">My Order</a></li>
+            <li><a class="dropdown-item" href="#">Payment History</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#">Change Password</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link fs-5" href="#" (click)="userLogOut()">LogOut</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

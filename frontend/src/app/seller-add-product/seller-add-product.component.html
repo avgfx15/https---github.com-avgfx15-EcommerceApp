@@ -1,0 +1,120 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1 class="text-center">Add Product</h1>
+    <div class="container-fluid px-5">
+      <div
+        class="alert alert-primary"
+        role="alert"
+        *ngIf="isDisabled"
+        [ngClass]="success === true ? 'alert-primary' : 'alert-danger'"
+      >
+        {{ showMessage }}
+      </div>
+    </div>
+    <div class="col-10 col-md-9">
+      <form
+        class="mx-5"
+        #addProductForm="ngForm"
+        (ngSubmit)="addProduct(addProductForm.value)"
+      >
+        <div class="my-3">
+          <label for="" class="form-label fs-5 text-black">Product Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="productName"
+            id=""
+            aria-describedby="productName"
+            placeholder="Enter Product Name"
+            ngModel
+          />
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label fs-5 text-black">Product Qty</label>
+          <input
+            type="text"
+            class="form-control"
+            name="productQty"
+            id=""
+            aria-describedby="productQty"
+            placeholder="Enter Product Qty"
+            ngModel
+          />
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label fs-5 text-black"
+            >Product Category</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="productCategory"
+            id=""
+            aria-describedby="productCategory"
+            placeholder="Enter Product Category"
+            ngModel
+          />
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label fs-5 text-black">Product Color</label>
+          <input
+            type="text"
+            class="form-control"
+            name="productColor"
+            id=""
+            aria-describedby="productColor"
+            placeholder="Enter Product Color"
+            ngModel
+          />
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label fs-5 text-black">Product Price</label>
+          <input
+            type="email"
+            class="form-control"
+            name="productPrice"
+            id=""
+            aria-describedby="productPrice"
+            placeholder="Enter Product Price"
+            ngModel
+          />
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label fs-5 text-black">Product Image</label>
+          <input
+            type="text"
+            class="form-control"
+            name="productImage"
+            id=""
+            aria-describedby="productImage"
+            placeholder="Enter Product Image"
+            ngModel
+          />
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label fs-5 text-black"
+            >Product Description</label
+          >
+          <textarea
+            name="productDescription"
+            class="form-control"
+            id=""
+            cols="30"
+            rows="10"
+            placeholder="Enter Product Description"
+            ngModel
+          >
+          </textarea>
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-primary">Add Product</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-2 col-md-2">
+      <div class="mx-1">
+        <p>{{ addProductForm.value | json }}</p>
+      </div>
+    </div>
+  </div>
+</div>

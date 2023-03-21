@@ -1,0 +1,148 @@
+<div class="container">
+  <div class="row">
+    <div class="form mt-5" *ngIf="showLogin">
+      <h1 class="text-center my-2">User Sign Up Form</h1>
+      <div
+        class="alert alert-primary"
+        role="alert"
+        *ngIf="isDisabled"
+        [ngClass]="success === true ? 'alert-primary' : 'alert-danger'"
+      >
+        {{ showMessage }}
+      </div>
+
+      <form (ngSubmit)="signUp(userSignup.value)" #userSignup="ngForm">
+        <div class="mb-3">
+          <label for="" class="form-label fw-bolder">Name</label>
+          <input
+            type="text"
+            name="name"
+            id=""
+            class="form-control"
+            placeholder=""
+            aria-describedby="helpId"
+            ngModel
+          />
+          <small id="helpId" class="text-muted">Help text</small>
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label fw-bolder">Email</label>
+          <input
+            type="text"
+            name="email"
+            id=""
+            class="form-control"
+            placeholder=""
+            aria-describedby="helpId"
+            ngModel
+          />
+          <small id="helpId" class="text-muted">Help text</small>
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label fw-bolder">Mobile</label>
+          <input
+            type="text"
+            name="mobile"
+            id=""
+            class="form-control"
+            placeholder=""
+            aria-describedby="helpId"
+            ngModel
+          />
+          <small id="helpId" class="text-muted">Help text</small>
+        </div>
+        <div class="mb-3">
+          <label for="" class="form-label fw-bolder">password</label>
+          <input
+            type="text"
+            name="password"
+            id=""
+            class="form-control"
+            placeholder=""
+            aria-describedby="helpId"
+            ngModel
+          />
+          <small id="helpId" class="text-muted">Help text</small>
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-primary">Sign Up</button>
+          <a
+            (click)="openToggleForm()"
+            class="ms-3 text-decoration-none"
+            role="button"
+            >Already have an account? Click to Login</a
+          >
+        </div>
+      </form>
+    </div>
+
+    <!-- Login Form setup -->
+
+    <div class="form mt-5" *ngIf="!showLogin">
+      <h1 class="text-center my-2">User Log In Form</h1>
+      <div
+        class="alert alert-primary"
+        role="alert"
+        *ngIf="isDisabled"
+        [ngClass]="success === true ? 'alert-primary' : 'alert-danger'"
+      >
+        {{ showMessage }}
+      </div>
+      <form (ngSubmit)="loginForm(userLogin.value)" #userLogin="ngForm">
+        <div class="mb-3">
+          <label for="" class="form-label fw-bolder">Email</label>
+          <input
+            type="text"
+            name="email"
+            id=""
+            class="form-control"
+            placeholder=""
+            aria-describedby="helpId"
+            ngModel
+            #email="ngModel"
+            required
+            email
+          />
+          <p class="text-danger mt-1">
+            <span *ngIf="email.invalid && email.touched"
+              >Please Input Valid Data</span
+            >
+          </p>
+        </div>
+
+        <div class="mb-3">
+          <label for="" class="form-label fw-bolder">password</label>
+          <input
+            type="text"
+            name="password"
+            id=""
+            class="form-control"
+            placeholder=""
+            aria-describedby="helpId"
+            ngModel
+            #password="ngModel"
+            required
+            minlength="6"
+            maxlength="20"
+          />
+          <p class="text-danger mt-1">
+            <span *ngIf="password.invalid && password.touched"
+              >Please Input Valid Data</span
+            >
+          </p>
+        </div>
+        <div class="mb-3">
+          <button class="btn btn-primary" [disabled]="userLogin.invalid">
+            Log In
+          </button>
+          <a
+            (click)="openToggleForm()"
+            class="ms-3 text-decoration-none"
+            role="button"
+            >Don't have an account? Click to Sign Up</a
+          >
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

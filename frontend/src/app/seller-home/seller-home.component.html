@@ -1,0 +1,59 @@
+<ngb-carousel *ngIf="latestProducts" class="mb-5">
+  <ng-template ngbSlide *ngFor="let latestProduct of latestProducts">
+    <div class="picsum-img-wrapper">
+      <a routerLink="/productdetails/{{ latestProduct._id }}">
+        <img
+          src="{{ latestProduct.productImage }}"
+          alt="Random first slide"
+          class="sliderImage"
+      /></a>
+    </div>
+    <div class="carousel-caption captionText">
+      <h3 class="productNameScroll">
+        <a
+          routerLink="/productdetails/{{ latestProduct._id }}"
+          class="text-decoration-none text-black"
+          >{{ latestProduct.productName }}</a
+        >
+      </h3>
+      <p class="productDesc">{{ latestProduct.productDescription }}</p>
+    </div>
+  </ng-template>
+</ngb-carousel>
+<div class="productListWrapper m-5">
+  <h1>Trendy Products</h1>
+  <div class="row">
+    <div
+      class="col-sm-3 ptoductCard"
+      *ngFor="let trendyProduct of trendyProducts"
+    >
+      <div class="ptoductData">
+        <a routerLink="/productdetails/{{ trendyProduct._id }}">
+          <img src="{{ trendyProduct.productImage }}" alt="" class="ptoductImg"
+        /></a>
+        <div class="productDetails">
+          <h5 class="productName">
+            <a
+              routerLink="/productdetails/{{ trendyProduct._id }}"
+              class="text-decoration-none text-black"
+              >{{ trendyProduct.productName }}</a
+            >
+          </h5>
+          <div class="productPrice">
+            <h6>Price : {{ trendyProduct.productPrice }}</h6>
+          </div>
+          <div class="productColor">
+            <h6>Color : {{ trendyProduct.productColor }}</h6>
+          </div>
+        </div>
+        <div class="productFooter">
+          <a routerLink="/productdetails/{{ trendyProduct._id }}"
+            >View Prodect</a
+          >
+
+          <a href="">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

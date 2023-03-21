@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="card mb-3 border-0 mt-5">
+    <div class="row g-0 mb-3 p-3" *ngIf="productData">
+      <div class="col-md-3 d-flex align-items-center justify-content-center">
+        <img
+          class="img-fluid rounded-start productImg"
+          src="{{ productData.productImage }}"
+          alt="..."
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title fs-4 fw-bolder">
+            Product Name :
+            {{ productData.productName }}
+          </h5>
+          <p class="card-text fs-5 fw-bolder">
+            Price : {{ productData.productPrice }}
+          </p>
+          <div class="card-text fs-5 fw-bolder">
+            Color :
+            <h3
+              [style.backgroundColor]="productData.productColor"
+              class="productColor"
+            ></h3>
+          </div>
+          <p class="card-text fs-5 fw-bolder">Qty : 10</p>
+          <p class="card-text fs-5 fw-bolder">
+            Category : {{ productData.productCategory }}
+          </p>
+          <div class="d-grid gap-2 d-md-block">
+            <button
+              *ngIf="!removeFromCart"
+              class="btn btn-primary px-3 py-2 fs-5"
+              type="button"
+              (click)="addToCart()"
+            >
+              Add to Cart
+            </button>
+            <button
+              *ngIf="removeFromCart"
+              class="btn btn-primary px-3 py-2 fs-5"
+              type="button"
+              (click)="removeProductFromCart(productData._id)"
+            >
+              Remove From Cart
+            </button>
+            <button class="btn btn-primary ms-3 px-3 py-2 fs-5" type="button">
+              Buy Now
+            </button>
+            <div class="d-grid gap-2 d-md-block mt-3">
+              <button class="px-2 fs-3" (click)="handleQty('minus')">-</button>
+              <input
+                type="text"
+                value="{{ inputQty }}"
+                name=""
+                id=""
+                class="px-2 fs-3 controlQty"
+              /><button class="px-2 fs-3" (click)="handleQty('plus')">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h1>
+          <p class="card-text descriptionTag">
+            Description :
+            <span class="card-text descriptionText">
+              {{ productData.productDescription }}</span
+            >
+          </p>
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div class="productListWrapper mx-5 my-3">
+  <h1 class="mb-3">Products as per your Search</h1>
+  <div class="card mb-3 border-0">
+    <div
+      class="row g-0 border border-dark mb-3 p-3"
+      *ngFor="let searchProduct of searchProducts"
+    >
+      <div class="col-md-3 d-flex align-items-center justify-content-center">
+        <a routerLink="/productdetails/{{ searchProduct._id }}">
+          <img
+            class="img-fluid rounded-start productImg"
+            src="{{ searchProduct.productImage }}"
+            alt="..."
+          />
+        </a>
+      </div>
+      <div class="col-md-9">
+        <div class="card-body">
+          <h5 class="card-title fs-4 fw-bolder">
+            Product Name :
+            <a
+              routerLink="/productdetails/{{ searchProduct._id }}"
+              class="text-decoration-none text-black"
+            >
+              {{ searchProduct.productName }}
+            </a>
+          </h5>
+          <p class="card-text fs-5 fw-bolder">
+            Price : {{ searchProduct.productPrice }}
+          </p>
+          <p class="card-text fs-5 fw-bolder">
+            Color : {{ searchProduct.productColor }}
+          </p>
+          <p class="card-text fs-5 fw-bolder">Qty : 10</p>
+          <p class="card-text descriptionTag">
+            Description :
+            <span class="card-text descriptionText">
+              {{ searchProduct.productDescription }}</span
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

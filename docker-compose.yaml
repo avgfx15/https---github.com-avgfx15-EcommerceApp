@@ -1,0 +1,60 @@
+version: "3"
+services:
+  #Frontend Services
+
+  front:
+    build:
+      context: "./frontend"
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+
+    container_name: angular
+    environment:
+      - WATCHPACK_POLLING=true
+    networks:
+      - angular-app-network
+    volumes:
+      - ./frontend:/app
+    depends_on:
+      - backend
+
+  # Backend Services
+
+  backend:
+    build:
+      context: "./backend"
+      dockerfile: Dockerfile
+    ports:
+      - 4700:4700
+    container_name: backend-container
+    links:
+      - mongo
+    networks:
+      - angular-app-network
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - mongo
+    environment:
+      - PORT=4700
+      - MONGODB_URI=mongodb://mongo:27017
+      - DB_NAME=Ecommerce
+      - NAME=Stacodev
+
+  mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+      - 27017:27017
+    container_name: mongo-container
+    networks:
+      - angular-app-network
+    volumes:
+      - mongoData:/data/db
+
+networks:
+  angular-app-network:
+
+volumes:
+  mongoData: {}
